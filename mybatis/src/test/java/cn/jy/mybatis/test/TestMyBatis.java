@@ -36,4 +36,25 @@ public class TestMyBatis {
         }
 
     }
+
+    @Test
+    public void test2() {
+        SqlSession sqlSession = null;
+        try {
+            InputStream in = Resources.getResourceAsStream("mybatis-config.xml");
+            SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(in);
+            //  创建sqlSessionFactory
+            sqlSession = factory.openSession();
+            // sqlSession
+            User user = sqlSession.selectOne("UserMapper.queryUserById", 1L);
+            System.out.println(user);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
+        }
+
+    }
 }

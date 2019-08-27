@@ -4,8 +4,30 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+    <!--environments 环境
+    default：指定默认环境
+    environment:具体的环境
+    transactionManager：指定事务管理类型
+        jdbc：每次从数据库连接池中获取连接，操作完成后，提交或回滚事务
+        managed:由第三方的容器来管理事务(jboss)
+    dataSource
+        tpye：指定数据源类型 pooled|unpooled|jndi
+            pooled:带有连接池功能的数据源
+            unpooled:不带有连接池的数据源
+            jndi:jndi数据源-往服务器里配数据库
+    -->
+
     <environments default="development">
         <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+        <environment id="test">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver"/>

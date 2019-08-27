@@ -21,11 +21,11 @@ public class TestMyBatis {
         SqlSession sqlSession = null;
         try {
             InputStream in = Resources.getResourceAsStream("mybatis-config.xml");
-            SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(in);
+            SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(in,"test");
             //  创建sqlSessionFactory
             sqlSession = factory.openSession();
             // sqlSession
-            User user = sqlSession.selectOne("UserMapper.queryUserById", 1);
+            User user = sqlSession.selectOne("UserMapper.queryUserById", 1L);
             System.out.println(user);
         } catch (IOException e) {
             e.printStackTrace();

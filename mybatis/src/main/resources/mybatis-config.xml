@@ -7,6 +7,11 @@
 
     <properties resource="jdbc.properties"/>
 
+    <!--开启驼峰匹配，完成经典的数据库列名风格(a_Col)到属性名的映射(aCol)-->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
     <!--environments 环境
     default：指定默认环境
     environment:具体的环境

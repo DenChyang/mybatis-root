@@ -12,6 +12,12 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
 
+    <!--别名-->
+    <typeAliases>
+        <!--<typeAlias type="cn.jy.mybatis.domain.User" alias="User"/>-->
+        <package name="cn.jy.mybatis.domain"/>
+    </typeAliases>
+
     <!--environments 环境
     default：指定默认环境
     environment:具体的环境

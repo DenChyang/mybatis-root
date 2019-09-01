@@ -53,5 +53,9 @@
     </environments>
     <mappers>
         <mapper resource="UserMapper.xml"/>
+        <mapper resource="UserDaoMapper.xml"/>
+
+        <!--引入外部映射文件-->
+        <!--<mapper url="file:\\\D:\workspace\Projects\mybatis-root\mybatis\src\main\resources\UserMapper.xml"/>-->
     </mappers>
 </configuration>

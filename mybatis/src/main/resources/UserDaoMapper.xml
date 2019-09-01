@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="UserDaoMapper">
+    <!--
+        一般不写参数类型
+    -->
+    <select id="findUserById" resultType="User">
+      select * from tb_user where id=#{id}
+    </select>
+
+    <select id="findAllUsers" resultType="User">
+
+        select * from tb_user;
+    </select>
+
+    <!-- 
+    新增用户
+    parameterType:一般不写
+
+    内容是inster 语句，占位符的名字与属性名一致
+
+    useGeneratedKeys:开启主键回显(keyProperty主键为id)
+    keyColumn(数据库中的主键字段)
+    -->
+    <insert id="saveUser" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+	INSERT INTO tb_user  (
+	 user_name ,
+	 password ,
+	 name ,
+	 age ,
+	 sex ,
+	 birthday ,
+	 created ,
+	 updated )
+	VALUES
+	(
+		#{userName},
+		#{password},
+		#{name},
+		#{age},
+		#{sex},
+		#{birthday},
+		#{created},
+		#{updated}
+	)
+    </insert>
+
+</mapper>

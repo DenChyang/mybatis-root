@@ -48,5 +48,32 @@
 		#{updated}
 	)
     </insert>
+	
+	<!--
+	修改用户
+parameterType="User" 可省略
+	-->
+	<update id="updateUser">
+		UPDATE tb_user
+			SET
+			   user_name = #{userName},
+			   password  = #{password},
+			   name   = #{name},
+			   age   = #{age},
+			   sex   = #{sex},
+			   birthday   = #{birthday},
+			   updated   = NOW()
+		WHERE id   = #{id}
+
+
+	</update>
+
+	<!--
+	删除
+	parameterType="User" 可省略
+	-->
+	<delete id="deleteUser">
+	  delete from tb_user where id=#{id}
+	</delete>
 
 </mapper>

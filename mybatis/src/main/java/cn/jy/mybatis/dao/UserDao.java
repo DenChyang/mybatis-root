@@ -26,8 +26,19 @@ public interface UserDao {
 
     /**************************/
     /**
-     *
+     * 新增用户
      */
     public void saveUser(User user);
+
+    /**
+     * 修改用户
+     * @param user
+     */
+    public void updateUser(User user);
+
+    /**
+     * 根据id删除用户
+     */
+    public void deleteUser(Long id);
 
 }

@@ -31,6 +31,7 @@ public class UserDaoImpl implements UserDao {
     public List<User> findAllUsers() {
 
         List<User> userList = this.sqlSession.selectList("UserDaoMapper.findAllUsers");
+        this.sqlSession.close();
         return userList;
     }
 
@@ -39,5 +40,22 @@ public class UserDaoImpl implements UserDao {
         this.sqlSession.insert("UserDaoMapper.saveUser",user);
         // 提交事务
         this.sqlSession.commit();
+        this.sqlSession.close();
+    }
+
+    @Override
+    public void updateUser(User user) {
+        this.sqlSession.update("UserDaoMapper.updateUser", user);
+
+        // 提交事务
+        this.sqlSession.commit();
+        this.sqlSession.close();
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        this.sqlSession.delete("UserDaoMapper.deleteUser", id);
+        this.sqlSession.commit();
+        this.sqlSession.close();
     }
 }

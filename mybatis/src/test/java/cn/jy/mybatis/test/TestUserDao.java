@@ -29,7 +29,7 @@ public class TestUserDao {
         SqlSession sqlSession = factory.openSession();
 
         UserDao userDao = new UserDaoImpl(sqlSession);
-        User user = userDao.findUserById(2L);
+        User user = userDao.findUserById(14l);
         System.out.println(user);
     }
 
@@ -56,9 +56,9 @@ public class TestUserDao {
 
         UserDao userDao = new UserDaoImpl(sqlSession);
         User user = new User();
-        user.setUserName("lala1");
+        user.setUserName("lala3");
         user.setPassword("1234565");
-        user.setName("拉拉2");
+        user.setName("拉拉3");
         user.setAge(12);
         user.setSex(1);
         user.setBirthday(new Date());
@@ -66,5 +66,45 @@ public class TestUserDao {
         user.setUpdated(new Date());
         userDao.saveUser(user);
         System.out.println(user);
+    }
+
+    /**
+     * 测试更新
+     * @throws IOException
+     */
+    @Test
+    public void test4() throws IOException {
+
+        InputStream in = Resources.getResourceAsStream("mybatis-config.xml");
+        SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(in);
+        //  创建sqlSessionFactory
+        SqlSession sqlSession = factory.openSession();
+
+        UserDao userDao = new UserDaoImpl(sqlSession);
+        User user = new User();
+        user.setId(12L);
+        user.setUserName("lala");
+        user.setPassword("123456");
+        user.setName("拉拉");
+        user.setAge(14);
+        user.setSex(2);
+        user.setBirthday(new Date());
+        user.setUpdated(new Date());
+        userDao.updateUser(user);
+        System.out.println(user);
+    }
+
+
+    @Test
+    public void test5() throws IOException {
+
+        InputStream in = Resources.getResourceAsStream("mybatis-config.xml");
+        SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(in);
+        //  创建sqlSessionFactory
+        SqlSession sqlSession = factory.openSession();
+
+        UserDao userDao = new UserDaoImpl(sqlSession);
+
+        userDao.deleteUser(13L);
     }
 }

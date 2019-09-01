@@ -3,7 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
 <mapper namespace="UserDaoMapper">
     <!--
         一般不写参数类型
@@ -50,8 +49,8 @@
     </insert>
 	
 	<!--
-	修改用户
-parameterType="User" 可省略
+		修改用户
+		parameterType="User" 可省略
 	-->
 	<update id="updateUser">
 		UPDATE tb_user
@@ -83,5 +82,20 @@ parameterType="User" 可省略
 	<select id="login" resultType="User">
 		select * from tb_user where user_name=#{userName} and password=#{password}
 	</select>
+
+
+	<!-- 自定义结果映射
+		autoMapping:开启自动映射
+	-->
+	<resultMap id="userMap" type="User" autoMapping="true">
+		<!--建议不要省略，可以提高性能，(先去缓存中查询，再去数据库中查询)-->
+		<id column="id" property="id"/>
+		<!--如果开启了驼峰匹配，驼峰匹配则有效-->
+		<result column="user_name" property="userName"/>
+	</resultMap>
+	<select id="findUserById2" resultMap="userMap">
+		select * from tb_user where id=#{id}
+	</select>
+
 
 </mapper>

@@ -8,4 +8,9 @@
     <select id="queryUserById" resultType="User">
       select * from tb_user where id=#{id}
     </select>
+
+    <!--string为String的内置别名-->
+    <select id="queryNameById" resultType="string">
+        select name from tb_user where id = #{id}
+    </select>
 </mapper>

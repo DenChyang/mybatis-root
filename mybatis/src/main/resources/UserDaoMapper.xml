@@ -76,4 +76,12 @@ parameterType="User" 可省略
 	  delete from tb_user where id=#{id}
 	</delete>
 
+	<!--
+	删除
+	parameterType="User" 可省略
+	-->
+	<select id="login" resultType="User">
+		select * from tb_user where user_name=#{userName} and password=#{password}
+	</select>
+
 </mapper>

@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @author DengQiang.Wu
- * @create 2019-09-01 18:18
+ * @date  2019-09-01 18:18
  */
 public interface UserDao {
 
@@ -40,5 +40,13 @@ public interface UserDao {
      * 根据id删除用户
      */
     public void deleteUser(Long id);
+
+    /**
+     * 用户登录--查询操作
+     * @param userName
+     * @param password
+     * @return
+     */
+    public User login(String userName, String password);
 
 }

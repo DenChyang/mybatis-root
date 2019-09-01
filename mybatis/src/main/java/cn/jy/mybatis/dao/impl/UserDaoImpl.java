@@ -4,6 +4,7 @@ import cn.jy.mybatis.dao.UserDao;
 import cn.jy.mybatis.domain.User;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -57,5 +58,24 @@ public class UserDaoImpl implements UserDao {
         this.sqlSession.delete("UserDaoMapper.deleteUser", id);
         this.sqlSession.commit();
         this.sqlSession.close();
+    }
+
+    /**
+     * 用户登录--查询操作
+     *
+     * @param userName
+     * @param password
+     * @return
+     */
+    @Override
+    public User login(String userName, String password) {
+        // 方法1，使用对象进行查询
+        // 方法2，使用hashmap进行查询
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("userName", userName);
+        map.put("password", password);
+        User user = this.sqlSession.selectOne("UserDaoMapper.login", map);
+        this.sqlSession.close();
+        return user;
     }
 }

@@ -88,4 +88,11 @@ public class TestUserDao {
 
         userDao.deleteUser(14L);
     }
+
+    @Test
+    public void test6() throws IOException {
+
+        User user = userDao.login("zhangsan", "12345");
+        System.out.println(user);
+    }
 }

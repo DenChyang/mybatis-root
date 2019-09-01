@@ -7,6 +7,7 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -20,28 +21,27 @@ import java.util.List;
  */
 public class TestUserDao {
 
-    @Test
-    public void test1() throws IOException {
+    private UserDao userDao ;
 
+    @Before
+    public void before() throws IOException {
         InputStream in = Resources.getResourceAsStream("mybatis-config.xml");
         SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(in);
         //  创建sqlSessionFactory
         SqlSession sqlSession = factory.openSession();
 
-        UserDao userDao = new UserDaoImpl(sqlSession);
+        userDao = new UserDaoImpl(sqlSession);
+    }
+
+    @Test
+    public void test1() throws IOException {
+
         User user = userDao.findUserById(14l);
         System.out.println(user);
     }
 
     @Test
     public void test2() throws IOException {
-
-        InputStream in = Resources.getResourceAsStream("mybatis-config.xml");
-        SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(in);
-        //  创建sqlSessionFactory
-        SqlSession sqlSession = factory.openSession();
-
-        UserDao userDao = new UserDaoImpl(sqlSession);
         List<User> allUsers = userDao.findAllUsers();
         System.out.println(allUsers);
     }
@@ -49,16 +49,10 @@ public class TestUserDao {
     @Test
     public void test3() throws IOException {
 
-        InputStream in = Resources.getResourceAsStream("mybatis-config.xml");
-        SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(in);
-        //  创建sqlSessionFactory
-        SqlSession sqlSession = factory.openSession();
-
-        UserDao userDao = new UserDaoImpl(sqlSession);
         User user = new User();
-        user.setUserName("lala3");
+        user.setUserName("lala4");
         user.setPassword("1234565");
-        user.setName("拉拉3");
+        user.setName("拉拉4");
         user.setAge(12);
         user.setSex(1);
         user.setBirthday(new Date());
@@ -75,12 +69,6 @@ public class TestUserDao {
     @Test
     public void test4() throws IOException {
 
-        InputStream in = Resources.getResourceAsStream("mybatis-config.xml");
-        SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(in);
-        //  创建sqlSessionFactory
-        SqlSession sqlSession = factory.openSession();
-
-        UserDao userDao = new UserDaoImpl(sqlSession);
         User user = new User();
         user.setId(12L);
         user.setUserName("lala");
@@ -98,13 +86,6 @@ public class TestUserDao {
     @Test
     public void test5() throws IOException {
 
-        InputStream in = Resources.getResourceAsStream("mybatis-config.xml");
-        SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(in);
-        //  创建sqlSessionFactory
-        SqlSession sqlSession = factory.openSession();
-
-        UserDao userDao = new UserDaoImpl(sqlSession);
-
-        userDao.deleteUser(13L);
+        userDao.deleteUser(14L);
     }
 }
